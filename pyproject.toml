@@ -1,0 +1,79 @@
+# Main project configuration and settings.
+#
+# The pyproject.toml is the recommended consolidated project-level configuration
+# file. It replaces the older requirements.txt as well as many smaller files
+# previously cluttering the root directory.
+
+[build-system]
+build-backend = "hatchling.build"
+requires = [ "hatchling" ]
+
+[project]
+name = "vibe-mesh"
+version = "0.1"
+description = "Fantastic real-time co-creation and exploration"
+readme = "README.md"
+requires-python = "==3.13.*"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+  "click>=8.2.0",
+  "micropython-esp32-esp32-generic-s3-stubs>=1.24.1.post2",
+  "pre-commit>=4.2.0",
+  "pyclean>=3.1.0",
+  "pyproject-fmt>=2.6.0",
+  "pytest>=8.3.5",
+  "ruff>=0.11.10",
+]
+
+[dependency-groups]
+dev = [
+]
+
+[tool.hatch.build.targets.wheel]
+packages = [ "src/vibe-mesh" ]
+
+[tool.ruff]
+line-length = 160 # Allow longer source lines than the default 88 chars
+exclude = [ "*ipynb", ".venv/**" ]
+lint.select = [
+  "A",   # flake8-builtins
+  "ANN", # flake8-annotations
+  "B",   # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # Pyflakes
+  "FA",  # flake8-future-annotations
+  "I",   # isort
+  "PD",  # pandas-vet
+  "PTH", # flake8-use-pathlib (PTH)
+  "Q",   # flake8-quotes
+  "SIM", # flake8-simplify
+  "TC",  # flake8-type-checking
+  "UP",  # pyupgrade
+]
+lint.per-file-ignores."!src/**.py" = [
+  "D",    # Allow missing docstrings
+  "E501", # Allow long lines
+]
+lint.pydocstyle.convention = "google" # Support Google-style docstrings
+
+[tool.pyproject-fmt]
+keep_full_version = true
+
+[tool.pytest.ini_options]
+console_output_style = "count" # Show progress in fraction instead percent
+addopts = [
+  "--color=yes",            # Enable color even in VSCode Testing panel
+  "-p no:warnings",         # (from tco-model)
+  "-r a",                   # Show extra test summary for failed tests
+  "--verbose",              # Show more details to speed up CI/CD debugging
+]
+testpaths = [
+  "tests",
+]

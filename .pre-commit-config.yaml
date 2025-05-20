@@ -1,0 +1,32 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-added-large-files
+    args: [--maxkb=4900]
+  - id: check-yaml
+  - id: check-toml
+
+- repo: https://github.com/tox-dev/pyproject-fmt
+  rev: v2.6
+  hooks:
+  - id: pyproject-fmt
+
+- repo: https://github.com/astral-sh/uv-pre-commit
+  rev: v0.7.6
+  hooks:
+    - id: uv-lock
+
+# Enforce Ruff on all new sources under src
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.11.5
+  hooks:
+  # - id: ruff
+  #   types_or: [ python ]
+  #   args: [ --config, pyproject.toml, --no-fix ]
+  - id: ruff-format
+    types_or: [ python ]
+    args: [ --config, pyproject.toml, --diff ]

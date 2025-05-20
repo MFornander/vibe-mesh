@@ -1,0 +1,73 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	"settings": {
+		"editor.tokenColorCustomizations": {
+			"textMateRules": [
+				{
+					"scope": "string.quoted.docstring.multi.python",
+					"settings": {
+						"foreground": "#70C070",
+					}
+				}
+			]
+		},
+		"files.trimTrailingWhitespace": true,
+		"files.exclude": {
+			".pytest_cache": true,
+			".ruff_cache": true,
+			".venv": true,
+			"**/__pycache__": true,
+			"**/*.egg-info": true,
+		},
+		"git.branchProtection": ["main"],
+		"gitlens.codeLens.scopes": ["document"],
+		"micropico.autoConnect": false,
+		"micropico.manualComDevice": "/dev/tty.usbmodem32201", // Set this in your user settings.json to override
+		"micropico.syncFolder": "vibe-mesh",
+		"python.analysis.autoFormatStrings": true,
+    	"python.analysis.typeCheckingMode": "basic",
+   		"python.analysis.diagnosticSeverityOverrides": {
+        	"reportMissingModuleSource": "none"
+    	},
+		"python.analysis.typeshedPaths": [".venv/lib/python3.13/site-packages"],
+		"python.analysis.extraPaths": [".venv/lib/python3.13/site-packages"],
+		"python.analysis.inlayHints.functionReturnTypes": true,
+		"python.analysis.inlayHints.pytestParameters": true,
+		"python.defaultInterpreterPath": ".venv/bin/python",
+		"python.experiments.optOutFrom": ["pythonTerminalEnvVarActivation"],
+		"python.testing.unittestEnabled": false,
+		"python.testing.pytestEnabled": true,
+		"ruff.configuration": "pyproject.toml",
+		"scm.diffDecorations": "gutter",
+		"terminal.integrated.defaultProfile.osx": "zsh",
+		"[python]": {
+			"editor.codeActionsOnSave": {
+				"source.fixAll": "never",
+				"source.organizeImports.ruff": "explicit",
+				"source.unusedImports": "never"
+			},
+			"editor.defaultFormatter": "charliermarsh.ruff",
+			"editor.formatOnSave": true,
+			"editor.rulers": [160] // Visual indicator where Ruff source formatter breaks, see pyproject.toml for Ruff settings
+		},
+	},
+	"extensions": {
+		"recommendations": [
+			"charliermarsh.ruff",
+			"DavidAnson.vscode-markdownlint",
+			"eamodio.gitlens",
+			"ms-python.debugpy",
+			"ms-python.python",
+			"ms-python.vscode-pylance",
+			"ms-vscode-remote.remote-ssh",
+			"ms-vscode-remote.remote-wsl",
+            "paulober.pico-w-go",
+			"redhat.vscode-yaml",
+			"tamasfe.even-better-toml",
+		]
+	},
+}
